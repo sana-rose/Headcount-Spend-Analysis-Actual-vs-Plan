@@ -1,78 +1,58 @@
-# Headcount & Spend: Actual vs Plan Dashboard
+# Headcount & Spend: Actual vs Plan Dashboard | Power BI
 
-A Power BI dashboard that compares **planned vs actual headcount and operating spend** across four departments for a full fiscal year (Apr 2025 to Mar 2026), and explains where and why the business is off plan.
+An interactive Power BI dashboard for comparing planned and actual headcount, hiring, attrition, and operating spend across departments.
 
-> **Note on data:** all figures are **simulated sample data**, created for this portfolio project. They do not come from any real company.
+> **Note:** All data in this project is **simulated sample data** created for portfolio purposes. It does not come from any real company.
 
-![Dashboard](Dashboard.png)
+## 📊 Project Overview
 
-## Business question
+This dashboard tracks four departments (Engineering, Finance, Operations, and Product) across a full fiscal year (Apr 2025 to Mar 2026) and shows where the business is off plan, with interactive filtering by department.
 
-Is the organisation hiring and spending in line with its plan, and if not, where are the gaps and what is driving them?
+## 🛠️ Tools & Technologies
 
-## Key findings
+- Power BI
+- DAX
+- Power Query
+- Excel
+- PowerPoint
+- Data Visualization
 
-- Headcount ended the year at **193 against a plan of 217**, which is **11.1% below plan**.
-- Total spend was **6.1% under plan**, mainly because roles were unfilled rather than because of real savings.
+## 📌 Dashboard Features
+
+- KPI cards for actual headcount, headcount variance %, spend variance %, and hiring achievement %
+- Planned vs actual headcount trend by month
+- Planned vs actual spend by department
+- Attrition by department
+- Department-level table with headcount and spend variance
+- Interactive Department filter
+
+## 📈 Dashboard Preview
+
+![Headcount & Spend Dashboard](Dashboard.png)
+
+## 🔍 Key Insights
+
+- Actual headcount ended the year at **193 against a plan of 217**, which is **11.1% below plan**.
+- Total spend was **6.1% under plan**, mainly because roles were unfilled rather than real savings.
 - Overall hiring was close to plan (**71 of 72 planned hires, 98.6%**), so hiring alone does not explain the gap.
 - **23 of the 24-person gap comes from attrition**, which the plan did not assume. Engineering lost 10 people and Operations lost 9.
-- **Product (-18.9%) and Engineering (-14.6%)** have the largest headcount shortfalls. Operations hired above plan, which hides shortfalls elsewhere.
+- **Product (-18.9%) and Engineering (-14.6%)** have the largest headcount shortfalls.
 - **Operations is 10.7% over its spend plan** even though its headcount is close to plan.
 
-## Recommendations
+## 💡 Recommendations
 
-1. Tackle attrition first, starting with Engineering and Operations.
-2. Close the hiring gaps in Engineering and Product.
-3. Review what is driving Operations spend.
-4. Re-forecast the budget with an explicit attrition assumption.
+- Tackle attrition first, starting with Engineering and Operations.
+- Close the hiring gaps in Engineering and Product.
+- Review what is driving Operations spend.
+- Re-forecast the budget with an explicit attrition assumption.
 
+## 📁 Files
 
-## Dashboard contents
+- `Headcount_Spend_Dashboard.pbix`: Power BI report
+- `Headcount_Spend_Sample_Data.xlsx`: simulated source data
+- `Headcount_Spend_Dashboard_Summary.pptx`: 3-slide leadership summary
+- `Dashboard.png`: dashboard screenshot
 
-- Four KPI cards: actual headcount, headcount variance %, spend variance %, hiring achievement %
-- Line chart: planned vs actual headcount by month
-- Bar chart: planned vs actual spend by department
-- Column chart: attrition by department
-- Table: planned vs actual headcount and spend variance by department
-- Department slicer that filters the whole page
+## 🎯 Project Objective
 
-## DAX measures
-
-Headcount is a running total, so "latest" measures read the most recent month instead of summing across months. Percentages are measures so they divide totals, not average row-level percentages.
-
-```
-Planned HC Latest =
-VAR LatestMonth = MAX(Data[Month])
-RETURN CALCULATE(SUM(Data[Planned Headcount]), Data[Month] = LatestMonth)
-
-Actual HC Latest =
-VAR LatestMonth = MAX(Data[Month])
-RETURN CALCULATE(SUM(Data[Actual Headcount]), Data[Month] = LatestMonth)
-
-HC Variance = [Actual HC Latest] - [Planned HC Latest]
-
-HC Variance % = DIVIDE([HC Variance], [Planned HC Latest])
-
-Spend Var % =
-DIVIDE(
-    SUM(Data[Actual Spend]) - SUM(Data[Planned Spend]),
-    SUM(Data[Planned Spend])
-)
-
-Hiring Achievement % =
-DIVIDE(SUM(Data[Actual Hires]), SUM(Data[Planned Hires]))
-```
-
-## Tools
-
-Power BI, DAX, Power Query, Excel, PowerPoint
-
-## Skills demonstrated
-
-Variance analysis (actual vs plan), KPI design, workforce and spend analytics, DAX, dashboard design, data validation, and communicating findings to leadership.
-
-
-
-## Author
-
-Sana Angel Rose | [LinkedIn](https://linkedin.com/in/sana-angel-rose)
+To turn planned vs actual workforce and spend data into an interactive dashboard that helps leadership see where hiring and budgets are off track, and why.
